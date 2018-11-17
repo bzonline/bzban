@@ -1,0 +1,3 @@
+bz_bzban_controller:
+    path: /bzban/{user_id}
+    defaults: { _controller: bz.bzban.controller:handle, user_id: "1" }

@@ -1,0 +1,42 @@
+services:
+    bz.bzban.controller:
+        class: bz\bzban\controller\main_controller
+        arguments:
+            - '@config'
+            - '@controller.helper'
+            - '@template'
+            - '@user'
+            - '%core.php_ext%'
+            - '@dbal.conn'
+            - '@auth'
+            - '%core.root_path%'
+            - '@request'
+#            - '@service_container'
+
+    bz.bzban.admin.controller:
+        class: bz\bzban\controller\admin_controller
+        arguments:
+            - '@config'
+            - '@service_container'
+            - '@dbal.conn'
+            - '@language'
+            - '@log'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+
+    bz.bzban.listener:
+        class: bz\bzban\event\main_listener
+        arguments:
+            - '@controller.helper'
+            - '@template'
+            - '@user'
+            - '%core.php_ext%'
+            - '@config'
+            - '@dbal.conn'
+            - '@auth'
+            - '%core.root_path%'
+        tags:
+            - { name: event.listener }

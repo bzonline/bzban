@@ -1,0 +1,153 @@
+<!-- INCLUDE overall_header.html -->
+
+<script type="text/javascript">
+// <![CDATA[
+
+	function setban()
+	{
+		document.getElementById('banbutton').style.color='#FF0000';
+		document.getElementById('banbutton').value='{L_BZBAN_BAN}';
+		document.getElementById('banbutton').name='bansubmit';
+//		document.getElementById('banreason').name='banreason';
+//		document.getElementById('bangivereason').name='bangivereason';
+		document.getElementById('banreason').style.display='block';
+		document.getElementById('bangivereason').style.display='block';
+		if(document.getElementById('banlength').value==-1) {
+			document.getElementById('banlengthother').style.display = 'block';
+		} else {
+			document.getElementById('banlengthother').style.display = 'none';
+		}
+		document.getElementById('banlength').style.display='block';
+		document.getElementById('posturl').style.display='block';
+		document.getElementById('banexclude').value=0;
+	}
+	function setunban()
+	{
+		document.getElementById('banbutton').style.color='#00AF00';
+		document.getElementById('banbutton').value='{L_BZBAN_UNBAN}';
+		document.getElementById('banbutton').name='unbansubmit';
+//		document.getElementById('banreason').name='unbanreason';
+//		document.getElementById('bangivereason').name='unbangivereason';
+		document.getElementById('banreason').style.display='none';
+		document.getElementById('bangivereason').style.display='none';
+		document.getElementById('banlengthother').style.display='none';
+		document.getElementById('banlength').style.display='none';
+		document.getElementById('posturl').style.display='none';
+		document.getElementById('banexclude').value=0;
+	}
+	function setex()
+	{
+		if({S_BZBAN_EXCLUDED})
+		{
+			document.getElementById('banbutton').style.color='#7F7F7F';
+			document.getElementById('banbutton').value='{L_BZBAN_UNEXCLUDE}';
+			document.getElementById('banbutton').name='unbansubmit';
+			document.getElementById('banlength').style.display='none';
+		} else {
+			document.getElementById('banbutton').style.color='#0000AF';
+			document.getElementById('banbutton').value='{L_BZBAN_EXCLUDE}';
+			document.getElementById('banbutton').name='bansubmit';
+			document.getElementById('banlength').style.display='block';
+		}
+//		document.getElementById('banreason').name='banreason';
+//		document.getElementById('bangivereason').name='bangivereason';
+		document.getElementById('banreason').style.display='none';
+		document.getElementById('bangivereason').style.display='none';
+		document.getElementById('banlengthother').style.display='none';
+		document.getElementById('posturl').style.display='none';
+		document.getElementById('banexclude').value=1;
+	}
+// ]]>
+</script>
+<!-- IF S_BZBAN_MAY_BAN -->
+<form id="bzban_ban" method="post" action="{U_ACTION}">
+
+<h2>{L_TITLE}</h2>
+
+<div class="panel">
+	<div class="inner">
+
+	<h3>{L_TITLE}</h3>-
+	<p>{L_EXPLAIN}</p>
+
+	<fieldset>
+	<dl>
+		<dt><label for="banunbanex">{L_BZBAN_BUNUNBANEX}{L_COLON}</label></dt>
+		<dd>
+			<label for="banunbanex0" class="bzban-ban"><input type="radio" name="banunbanex" id="banunbanex0" value="0" onchange="setban()" checked="true" /> <span id="banspan">{L_BZBAN_BAN}</span></label>
+			<label for="banunbanex1" class="bzban-unban"><input type="radio" name="banunbanex" id="banunbanex1" value="1" onchange="setunban()" /> <span id="unspan">{L_BZBAN_UNBAN}</span></label>
+			<label for="banunbanex2" class="bzban-exclude"><input type="radio" name="banunbanex" id="banunbanex2" value="2" onchange="setex()" /> <span id="exspan">{L_BZBAN_EXCLUDE}</span></label>
+		</dd>
+	</dl>
+	<hr />
+	<dl>
+		<dt><label for="ban">{L_BZBAN_USERNAME} {L_COLON}</label></dt>
+<!--		<dd><label for="ban"><input name="ban" id="ban" type="text" class="inputbox" maxlength="128" value="{L_BZBAN_NAME}" /></label></dd> -->
+		<dd><label for="ban"><textarea name="ban" id="ban" class="inputbox" cols="40" rows="3">{L_BZBAN_NAME}</textarea></label></dd>
+		<dd id="banfinduser"><strong><a href="{U_FIND_USERNAME}" onclick="find_username(this.href); return false;">{L_FIND_USERNAME}</a></strong></dd>
+	</dl>
+<!-- IF S_BZBAN_BANNED -->
+	<dl>
+		<dt><label for="banstart">{L_BZBAN_WAS_BANNED}{L_COLON}</label></dt>
+		<dd><label for="banstart" class="bzban-ban"><strong>{L_BZBAN_BAN_START}</strong></label></dd>
+	</dl>
+	<dl>
+		<dt><label for="banned">{L_BZBAN_BANNED}{L_COLON}</label></dt>
+		<dd><label for="banned" class="bzban-ban"><strong>{L_BZBAN_BAN_END}</strong></label></dd>
+	</dl>
+	<dl>
+		<dt><label for="posturl">{L_BZBAN_USER_POST_URL}{L_COLON}</label></dt>
+		<dd><label for="posturl" id="posturl"><strong>{L_BZBAN_POST_URL}</strong></label></dd>
+	</dl>
+<!-- ENDIF -->
+	<dl>
+		<dt><label for="banlength">{L_BAN_LENGTH}{L_COLON}</label></dt>
+		<dd><label for="banlength"><select name="banlength" id="banlength" onchange="if(this.value==-1){document.getElementById('banlengthother').style.display = 'block';}else{document.getElementById('banlengthother').style.display='none';}"><option value="0">Permanent</option><option value="30">30 minutes</option><option value="60">1 hour</option><option value="360">6 hours</option><option value="1440">1 day</option><option value="2880">2 days</option><option value="4320">3 days</option><option value="7200">5 days</option><option value="10080">7 days</option><option value="20160">2 weeks</option><option value="40320">1 month</option><option value="-1">Until -&gt; </option></select></label></dd>
+		<dd id="banlengthother" style="display: none;"><label><input type="text" name="banlengthother" class="inputbox" value="{L_BZBAN_BAN_MSG}" /><br /><span>{L_YEAR_MONTH_DAY}</span></label></dd>
+	</dl>
+	<dl>
+		<dt><label for="banreason">{L_BZBAN_REASON_MOD}{L_COLON}</label></dt>
+		<dd><input name="banreason" id="banreason" type="text" class="inputbox" maxlength="128" value="{L_BZBAN_REASON_MOD_MSG}" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="bangivereason">{L_BZBAN_REASON_USR}{L_COLON}</label></dt>
+		<dd><input name="bangivereason" id="bangivereason" type="text" class="inputbox" maxlength="128" value="{L_BZBAN_REASON_USR_MSG}" /></dd>
+	</dl>
+	</fieldset>
+
+	</div>
+</div>
+
+<fieldset class="submit-buttons">
+	{S_HIDDEN_FIELDS}
+	<input type="hidden" name="banexclude" id="banexclude" value="0" />
+	<input type="reset" name="reset" value="{L_RESET}" id="resetbutton" class="button2" />&nbsp;
+	<input type="submit" name="bansubmit" value="{L_BZBAN_BAN}" id="banbutton" class="button1" />
+	{S_FORM_TOKEN}
+</fieldset>
+</form>
+<script>
+<!-- IF S_BZBAN_EXCLUDED -->
+	document.getElementById('banunbanex2').checked = 'true';
+	document.getElementById('banunbanex0').disabled  = 'true';
+	document.getElementById('banspan').style.color='#FF9F9F';
+	document.getElementById('exspan').innerHTML='{L_BZBAN_UNEXCLUDE}';
+	document.getElementById('exspan').style.color='#7F7F7F';
+	document.getElementById('banbutton').value='{L_BZBAN_UNEXCLUDE}';
+	document.getElementById('banbutton').style.color='#7F7F7F';
+	document.getElementById('banbutton').name='unbansubmit';
+	document.getElementById('banexclude').value=1;
+	document.getElementById('banreason').style.display='none';
+	document.getElementById('bangivereason').style.display='none';
+			document.getElementById('banlength').style.display='none';
+<!-- ELSE -->
+	document.getElementById('banexclude').value=0;
+	document.getElementById('banunbanex0').checked = 'true';
+<!-- ENDIF -->
+<!-- IF not S_BZBAN_BANNED -->
+	document.getElementById('banunbanex1').disabled  = 'true';
+	document.getElementById('unspan').style.color='#8FBF8F';
+<!-- ENDIF -->
+</script>
+<!-- ENDIF -->
+<!-- INCLUDE overall_footer.html -->

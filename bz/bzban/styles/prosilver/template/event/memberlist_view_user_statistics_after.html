@@ -1,0 +1,11 @@
+<!-- IF S_BZBAN_BANNED -->
+	<dt>{L_BZBAN_BANNED}{L_BZBAN_UNTIL}{L_COLON}</dt> <dd><strong>{L_BZBAN_BAN_END}</strong></dd>
+<!-- IF S_BZBAN_MAY_BAN -->
+	<dt>{L_BZBAN_WAS_BANNED}{L_COLON}</dt> <dd><strong>{L_BZBAN_BAN_START}</strong></dd>
+	<dt>{L_BZBAN_UNTIL}{L_COLON}</dt> <dd><strong>{L_BZBAN_BAN_END}</strong></dd>
+	<dt>{L_BZBAN_REASON_MOD}{L_COLON}</dt> <dd>{L_BZBAN_REASON_MOD_MSG}</dd>
+	<dt>{L_BZBAN_REASON_USR}{L_COLON}</dt> <dd>{L_BZBAN_REASON_USR_MSG}</dd>
+<!-- ELSE -->
+	<dt>{L_BZBAN_REASON}{L_COLON}</dt> <dd>{L_BZBAN_REASON_USR_MSG}</dd>
+<!-- ENDIF -->
+<!-- ENDIF -->

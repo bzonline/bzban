@@ -1,0 +1,100 @@
+dd.bzban-rank {
+    color: #FF0000;
+    font-weight:bold;
+	font-style: normal;
+}
+
+@media only screen and (max-width: 700px), only screen and (max-device-width: 700px)
+	dd.bzban-rank {
+		margin: 0;
+	}
+}
+
+@media (max-width: 700px) {
+	dd.bzban-rank {
+		margin: 0;
+	}
+}
+
+table.bzban-center {
+	margin-left:auto; 
+	margin-right:auto;
+}
+
+label.bzban-ban {
+    color: #FF0000;
+    font-weight:bold;
+	font-style: normal;
+    font-size:12px;
+}
+
+label.bzban-unban {
+    color: #00AF00;
+    font-weight:bold;
+	font-style: normal;
+    font-size:12px;
+}
+
+label.bzban-exclude {
+    color: #0000AF;
+    font-weight:bold;
+	font-style: normal;
+    font-size:12px;
+}
+
+#resetbutton {
+	font-size: 24px;
+}
+
+#banbutton {
+	font-size: 24px;
+	color: #FF0000;
+}
+
+#unbanbutton {
+	font-size: 24px;
+	color: #00AF00;
+}
+
+#excludebutton {
+	font-size: 24px;
+	color: #0000AF;
+}
+
+
+
+/*
+	margin-top: 1.5em;
+	margin-bottom: 1px;
+.ai {
+    font-style:normal;
+    color:#105289;
+    font-weight:bold;
+    font-size:24px;
+    line-height:24px;
+	vertical-align: middle;
+}
+
+.postprofile dt.no-profile-rank, .postprofile dd.profile-rank, .postprofile .search-result-date {
+	margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 700px), only screen and (max-device-width: 700px)
+{
+	.rtl .postprofile dt, .rtl .postprofile dd.profile-rank, .rtl .search .postprofile dd {
+		margin: 0;
+	}
+}
+
+@media (max-width: 700px) {
+	.responsive-hide { display: none !important; }
+	.responsive-show { display: block !important; }
+	.responsive-show-inline { display: inline !important; }
+	.responsive-show-inline-block { display: inline-block !important; }
+	
+	.postprofile dt, .postprofile dd.profile-rank, .search .postprofile dd {
+		display: block;
+		margin: 0;
+	}
+}
+*/
